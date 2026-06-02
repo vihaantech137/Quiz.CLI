@@ -1,0 +1,62 @@
+import random
+
+quiz_pool = {
+    "easy": [
+        {"question": "Which Country is known as the Land of Rising Sun", "answer": "Japan"},
+        {"question": "What is the smallest prime number", "answer": "2"},
+        {"question": "Which type of cells in our blood fight infectious diseases", "answer": "White blood cells"},
+        {"question": "Who was the first person to step on the moon", "answer": "Neil Armstrong"},
+        {"question": "What is the largest desert in the world", "answer": "Antarctic desert"},
+    ],
+    "hard": [
+        {"question": "Which country is the only one bordered by both the Caspian Sea and the Persian Gulf", "answer": "Iran"},
+        {"question": "Which element was discovered on the Sun before it was discovered on Earth?", "answer": "Helium"},
+        {"question": "What is the only planet not named after a roman god", "answer": "Earth"},
+        {"question": "Which scientist won Nobel Prizes in two different scientific fields", "answer": "Marie Curie"},
+        {"question": "How long did the shortest war ever approximately last", "answer": "38 minutes"}
+    ]
+}
+
+def run_quiz(questions):
+    score = 0
+    # FIX: Need to call .copy() as a method
+    shuffled_questions = questions.copy() 
+    random.shuffle(shuffled_questions)
+
+    for item in shuffled_questions:
+        print("\n" + item["question"])
+
+        guess = input("Your Answer: ").strip().lower()
+        # FIX: Use quotes for dictionary keys ("answer" instead of answer)
+        correct_answer = item["answer"].strip().lower()
+
+        if guess == correct_answer:
+            print("Correct!")
+            score += 1
+        else:
+            print(f"Wrong! The correct answer is: {item['answer']}")
+            
+    print(f"\nGame Over! Your total score is: {score}/{len(shuffled_questions)}")
+
+def main_menu():
+    while True:
+        print("""\n==========Welcome to the Quiz Game==========
+        1) Easy Mode
+        2) Hard Mode
+        3) Quit""")
+        choose = input("Choose from any of the above options (1-3): ").strip()
+
+        if choose == "1":
+            print("\nStarting Easy Mode...")
+            run_quiz(quiz_pool["easy"])
+        elif choose == "2":
+            print("\nStarting Hard Mode...")
+            run_quiz(quiz_pool["hard"])
+        elif choose == "3":
+            print("Thanks for playing the Quiz Game")
+            break
+        else:
+            print("Invalid Choice! Please choose 1, 2, or 3.")
+
+if __name__ == "__main__":
+    main_menu()
