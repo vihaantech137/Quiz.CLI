@@ -19,7 +19,7 @@ quiz_pool = {
 
 def run_quiz(questions):
     score = 0
-    # FIX: Need to call .copy() as a method
+    
     shuffled_questions = questions.copy() 
     random.shuffle(shuffled_questions)
 
@@ -27,7 +27,6 @@ def run_quiz(questions):
         print("\n" + item["question"])
 
         guess = input("Your Answer: ").strip().lower()
-        # FIX: Use quotes for dictionary keys ("answer" instead of answer)
         correct_answer = item["answer"].strip().lower()
 
         if guess == correct_answer:
@@ -58,5 +57,4 @@ def main_menu():
         else:
             print("Invalid Choice! Please choose 1, 2, or 3.")
 
-if __name__ == "__main__":
     main_menu()
